@@ -3,10 +3,16 @@ FROM ubuntu:22.04
 # update and install sudo
 RUN apt-get update && \
     apt-get -y install sudo
-# install curl
-RUN sudo apt-get install curl -y
+
+# install basic tools
+RUN apt-get update && \
+    apt-get install -y \
+    curl \
+    unzip
+
 # install azure cli
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
 # install terraform
 RUN apt-get update && apt-get install -y gnupg software-properties-common curl wget git && \
     curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
@@ -16,7 +22,5 @@ RUN apt-get update && apt-get install -y gnupg software-properties-common curl w
 # Install TFLint
 RUN curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 
-# update and install wget and git
-RUN apt-get update && apt-get install -y \
-    wget \
-    git
+# Clean up
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
