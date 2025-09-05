@@ -1,0 +1,21 @@
+# Local Terraform directories
+.terraform/
+**/.terraform/*
+
+# Terraform state
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Local overrides
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI config files
+.terraformrc
+terraform.rc
+
+# Keep the provider lock file (do NOT ignore this)
+!terraform.lock.hcl
